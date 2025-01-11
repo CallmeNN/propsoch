@@ -1,20 +1,27 @@
 import { EmblaOptionsType } from "embla-carousel";
-import propBuild1 from "@/assets/images/propBuild1.jpeg";
 import EmblaCarousel from "@/components/carousel/EmblaCarousel";
 import { Eye, Star, Heart } from "lucide-react";
+import { useDispatch } from "react-redux";
+import { toggleWishlist } from "@/app/features/properties/propertiesSlice";
 
 function ExploreCard({
   details,
 }: {
-  id: number;
-  name: string;
-  availability: string;
-  seen: string;
-  rating: number;
-  wishlisted: boolean;
-  slides: any[];
+  details: {
+    id: number;
+    name: string;
+    availability: string;
+    seen: string;
+    rating: number;
+    wishlisted: boolean;
+    slides: any[];
+  };
 }) {
+  const dispatch = useDispatch();
   const { id, name, availability, seen, rating, wishlisted, slides } = details;
+  const handleWishlistToggle = (id: number) => {
+    dispatch(toggleWishlist(id));
+  };
 
   const OPTIONS: EmblaOptionsType = {};
   return (
@@ -35,7 +42,7 @@ function ExploreCard({
           >
             Most Liked
           </span>
-          <span>
+          <span onClick={() => handleWishlistToggle(id)}>
             <Heart fill={wishlisted ? "red" : "white"} strokeWidth={0} />
           </span>
         </>

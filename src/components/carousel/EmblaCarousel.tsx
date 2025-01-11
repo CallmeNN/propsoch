@@ -3,7 +3,6 @@ import { EmblaOptionsType } from "embla-carousel";
 import { DotButton, useDotButton } from "./EmblaCarouselDotButton";
 import useEmblaCarousel from "embla-carousel-react";
 import "./embla.css";
-import { Heart } from "lucide-react";
 
 type PropType = {
   slides: any[];

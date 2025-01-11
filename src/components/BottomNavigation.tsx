@@ -14,34 +14,24 @@ interface BottomNavItemProps {
   label: string;
   to: string;
   icon: string;
-  activeIcon: string;
+  activeIcon?: string;
 }
 
-const BottomNavItem = ({
-  label,
-  to,
-  icon,
-  activeIcon,
-}: BottomNavItemProps) => {
-
-    const isSelected = useMatch({ path: to, end: true });
+const BottomNavItem = ({ label, to, icon }: BottomNavItemProps) => {
+    
+  const isSelected = useMatch({ path: to, end: true });
 
   return (
     <Link to={to}>
       <div className="">
-        <img
-          src={icon}
-          alt={label}
-          className="w-16 h-16"
-        />
+        <img src={icon} alt={label} className="w-16 h-16" />
       </div>
-      <span>{label}</span>
+      <span style={{ color: isSelected ? "red" : "black" }}>{label}</span>
     </Link>
   );
 };
 
 function BottomNavigation() {
-    
   const navItemsObj = [
     {
       label: "Explore",

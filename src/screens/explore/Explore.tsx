@@ -5,6 +5,8 @@ import propBuild1 from "@/assets/images/propBuild1.jpeg";
 import propBuild2 from "@/assets/images/propBuild2.jpeg";
 import propBuild3 from "@/assets/images/propBuild3.jpeg";
 import propBuild4 from "@/assets/images/propBuild4.jpeg";
+import { useDispatch, useSelector } from "react-redux";
+import { setProperties } from "@/app/features/properties/propertiesSlice";
 
 // Static data can be moved outside the component
 const SLIDE1 = Array(5).fill(propBuild1);
@@ -33,7 +35,9 @@ const fetchMoreData = (startIndex: number, limit: number) => {
 };
 
 function Explore() {
-  const [visibleItems, setVisibleItems] = useState([]);
+
+  const dispatch = useDispatch();
+  const {properties} = useSelector((state: any) => state.property);
   const observerRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
@@ -42,13 +46,13 @@ function Explore() {
     // Initial load
     const loadData = async () => {
       setLoading(true);
-      const newData = await fetchMoreData(0, 4);
-      setVisibleItems(newData);
+      const newData:any = await fetchMoreData(0, 4);
+      dispatch(setProperties(newData));
       setLoading(false);
     };
-
-    loadData();
+    if(properties.length === 0) loadData();
   }, []);
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -57,8 +61,8 @@ function Explore() {
         if (entry.isIntersecting && !loading) {
           setLoading(true);
           // Fetch more data when the last item is in view
-          const newData = await fetchMoreData(page * 4, 4);
-          setVisibleItems((prevItems) => [...prevItems, ...newData]);
+          const newData:any = await fetchMoreData(page * 4, 4);
+          dispatch(setProperties([...properties, ...newData]));
           setPage((prevPage) => prevPage + 1);
           setLoading(false);
         }
@@ -77,11 +81,11 @@ function Explore() {
         observer.unobserve(observerRef.current);
       }
     };
-  }, [loading, page]); // Re-run the effect when loading or page changes
+  }, [loading, page, properties]); // Re-run the effect when loading or page changes
 
   return (
     <div className="explore">
-      {visibleItems.map((detail) => (
+      {properties.map((detail: any) => (
         <ExploreCard key={detail.id} details={detail} />
       ))}
       {loading && <div>Loading...</div>}
