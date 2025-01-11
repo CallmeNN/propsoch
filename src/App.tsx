@@ -8,10 +8,10 @@ import {
   ROUTE_MAP,
   ROUTE_WISHLIST,
 } from "./constants/routes";
-import Login from "./screens/Login";
-import Explore from "./screens/Explore";
-import Wishlist from "./screens/Wishlist";
-import Map from "./screens/Map";
+import Login from "./screens/login/Login";
+import Explore from "./screens/explore/Explore";
+import Wishlist from "./screens/wishlist/Wishlist";
+import Map from "./screens/map/Map";
 
 const router = createBrowserRouter([
   {

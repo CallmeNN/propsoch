@@ -1,0 +1,40 @@
+.explore{
+    padding: 2px 8px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Creates 2 equal-width columns */
+    gap: 0.5rem; 
+}
+.explore-card{
+
+    img{
+        max-width: 48rem;
+        height: 246px;
+        padding: 8px 0px 0px 0px;
+        gap: 0px;
+        border-radius: 16px;
+        justify-content: space-between;
+        opacity: 0px;
+        
+    }
+  
+}
+
+@media screen and (min-width: 600px) and (max-width: 1024px){
+    .explore {
+        padding: 10px 24px; 
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+      }
+      .explore-card{
+        
+        img{
+            max-width: 48rem;
+            height: 300px;
+            padding: 10px 0px 0px 0px;
+            gap: 0px;
+            border-radius: 16px;
+            
+        }
+      
+    }
+}

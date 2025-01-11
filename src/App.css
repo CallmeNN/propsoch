@@ -1,57 +1,111 @@
+/* header */
+header{
+  /* position: fixed; */
+  padding: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff; 
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); 
+  display: flex;
+  justify-content: space-around; 
+  align-items: center;
+  padding: 5px 0; 
+  z-index: 1000; 
+  border-bottom: 1px solid #ddd; 
+  /* margin-bottom: 2px; */
+}
 /* Bottom Navigation Bar */
 footer {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: #ffffff; /* Background color for the navigation bar */
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for elevation */
+  background-color: #ffffff; 
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); 
   display: flex;
-  justify-content: space-around; /* Even spacing between items */
+  justify-content: space-around; 
   align-items: center;
-  padding: 10px 0; /* Padding for spacing */
-  z-index: 1000; /* Ensure it stays above other elements */
-  border-top: 1px solid #ddd; /* Optional border on top */
+  padding: 10px 0; 
+  z-index: 1000; 
+  border-top: 1px solid #ddd; 
 }
 
 /* Individual Navigation Item */
 footer a {
-  text-decoration: none; /* Remove underline */
-  color: #333; /* Default text color */
+  text-decoration: none; 
+  color: #333; 
   display: flex;
-  flex-direction: column; /* Stack icon and label vertically */
-  align-items: center; /* Center align content */
-  font-size: 12px; /* Text size */
-  transition: color 0.3s ease; /* Smooth color transition */
+  flex-direction: column; 
+  align-items: center; 
+  font-size: 12px; 
+  transition: color 0.3s ease; 
 }
 
 footer a img {
-  width: 24px; /* Icon width */
-  height: 24px; /* Icon height */
-  margin-bottom: 5px; /* Space between icon and label */
+  width: 24px; 
+  height: 24px; 
+  margin-bottom: 5px; 
 }
 
 footer a:hover {
-  color: #007bff; /* Hover color for text */
+  color: #007bff; 
 }
 
 /* Active State */
 footer a.active {
-  color: #007bff; /* Color for active item */
+  color: #007bff; 
 }
 
 footer a.active img {
-  filter: brightness(1.2); /* Slightly brighten active icon */
+  filter: brightness(1.2); 
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   footer a img {
-    width: 20px; /* Smaller icons for smaller screens */
+    width: 20px; 
     height: 20px;
   }
 
   footer a {
-    font-size: 10px; /* Smaller text size */
+    font-size: 10px; 
   }
 }
+
+/* flex-col: Flex container with column direction */
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* flex: Flex container with row direction */
+.flex {
+  display: flex;
+}
+
+/* justify-between: Distribute items with space between */
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+/* gap-2: Add gap between flex items */
+.gap-2 {
+  gap: 0.5rem; /* 8px gap, adjust as needed */
+}
+
+/* items-center: Vertically align items to the center */
+.items-center {
+  align-items: center;
+}
+
+/* span styles (optional) */
+span {
+  font-size: 1rem; /* Adjust to your preference */
+  color: #333; /* Default text color */
+}
+
