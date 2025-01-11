@@ -3,6 +3,7 @@ import EmblaCarousel from "@/components/carousel/EmblaCarousel";
 import { Eye, Star, Heart } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { toggleWishlist } from "@/app/features/properties/propertiesSlice";
+import { useNavigate } from "react-router-dom";
 
 function ExploreCard({
   details,
@@ -18,6 +19,7 @@ function ExploreCard({
   };
 }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { id, name, availability, seen, rating, wishlisted, slides } = details;
   const handleWishlistToggle = (id: number) => {
     dispatch(toggleWishlist(id));
@@ -25,7 +27,7 @@ function ExploreCard({
 
   const OPTIONS: EmblaOptionsType = {};
   return (
-    <div className="explore-card">
+    <div className="explore-card" style={{ cursor: "pointer" }} onClick={() => navigate(`/explore/${id}`)}>
       <EmblaCarousel slides={slides} options={OPTIONS}>
         <>
           <span

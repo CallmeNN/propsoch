@@ -12,6 +12,7 @@ import Login from "./screens/login/Login";
 import Explore from "./screens/explore/Explore";
 import Wishlist from "./screens/wishlist/Wishlist";
 import Map from "./screens/map/Map";
+import PropertyDetails from "./screens/propertyDetails/PropertyDetails";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: ROUTE_EXPLORE,
         element: <Explore />,
+      },
+      {
+        path: `${ROUTE_EXPLORE}/:id`, // Dynamic route for property details
+        element: <PropertyDetails />,
       },
       {
         path: ROUTE_WISHLIST,

@@ -109,3 +109,8 @@ span {
   color: #333; /* Default text color */
 }
 
+.font-3xl{
+  font-weight: 800;
+  font-size: xx-large;
+}
+
