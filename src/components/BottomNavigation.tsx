@@ -12,24 +12,25 @@ import {
 
 interface BottomNavItemProps {
   label: string;
-  href: string;
+  to: string;
   icon: string;
   activeIcon: string;
 }
 
 const BottomNavItem = ({
   label,
-  href,
+  to,
   icon,
   activeIcon,
 }: BottomNavItemProps) => {
-  const isSelected = useMatch(href);
+
+    const isSelected = useMatch({ path: to, end: true });
 
   return (
-    <Link to={href}>
+    <Link to={to}>
       <div className="">
         <img
-          src={isSelected ? activeIcon : icon}
+          src={icon}
           alt={label}
           className="w-16 h-16"
         />
@@ -44,32 +45,32 @@ function BottomNavigation() {
   const navItemsObj = [
     {
       label: "Explore",
-      href: ROUTE_EXPLORE,
+      to: ROUTE_EXPLORE,
       icon: SearchIcon,
-      activeIcon: "/icons/explore-active.svg",
+      activeIcon: "",
     },
     {
       label: "Wishlist",
-      href: ROUTE_WISHLIST,
+      to: ROUTE_WISHLIST,
       icon: HeartIcon,
-      activeIcon: "/icons/explore-active.svg",
+      activeIcon: "",
     },
     {
       label: "Show map",
-      href: ROUTE_MAP,
+      to: ROUTE_MAP,
       icon: LocationIcon,
-      activeIcon: "/icons/explore-active.svg",
+      activeIcon: "",
     },
     {
       label: "Log In",
-      href: ROUTE_LOGIN,
+      to: ROUTE_LOGIN,
       icon: ProfileIcon,
-      activeIcon: "/icons/explore-active.svg",
+      activeIcon: "",
     },
   ];
 
   return (
-    <footer className="fixed bottom-0">
+    <footer className=" ">
       {navItemsObj.map((item) => (
         <BottomNavItem key={item.label} {...item} />
       ))}
