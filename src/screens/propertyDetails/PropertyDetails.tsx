@@ -4,11 +4,11 @@ import { RootState } from "@/app/store";
 import "./PropertyDetails.scss";
 import LocationFilledIcon from "@/assets/icons/LocationFilled.svg";
 import MapPinBg from "@/assets/icons/MapPinBg.svg";
-import useGoogleMapsLoader from "@/hooks/useGoogleMapsLoader";
 import { useEffect, useState } from "react";
 import { GoogleMap, OverlayView } from "@react-google-maps/api";
 import RealEstateMapPin from "@/assets/icons/RealEstateMapPin.svg";
 import { getGeocodedAddress } from "@/lib/utils";
+import useGoogleMapsLoader from "@/hooks/useGoogleMapsLoader";
 
 function PropertyDetails() {
   const { id } = useParams<{ id: string }>();
@@ -18,6 +18,7 @@ function PropertyDetails() {
   const [center, setCenter] = useState({ lat: 0, lng: 0 });
   const [address, setAddress] = useState("");
   const { isLoaded, loadError } = useGoogleMapsLoader();
+
   const getCurrentLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -38,7 +39,9 @@ function PropertyDetails() {
           }
         },
         (error) => {
-          console.error("Error getting location:", error);
+          alert(
+            error.message + " Please enable location services and try again."
+          );
         }
       );
     } else {
@@ -47,9 +50,7 @@ function PropertyDetails() {
   };
 
   useEffect(() => {
-    if (isLoaded) {
-      getCurrentLocation();
-    }
+    if (isLoaded) getCurrentLocation();
   }, [isLoaded]);
 
   if (!property) {
@@ -100,7 +101,6 @@ function PropertyDetails() {
     height: "27vh",
   };
 
-
   return (
     <div className="property-details flex-col" style={{ marginBottom: "9rem" }}>
       <img
@@ -116,7 +116,6 @@ function PropertyDetails() {
         <span className="flex items-center gap-2">
           <img src={LocationFilledIcon} width="20rem" />
           <span style={{ fontSize: "1.2rem", color: "gray" }}>
-            {" "}
             Sector 57, Gurgaon
           </span>
         </span>
@@ -130,14 +129,16 @@ function PropertyDetails() {
       {loadError ? (
         <div>Error loading Google Maps</div>
       ) : (
-        <GoogleMap
-          mapContainerStyle={mapContainerStyle}
-          zoom={13}
-          center={center}
-          options={mapOptions}
-        >
-          <RedLocationMarker location={center} />
-        </GoogleMap>
+        isLoaded && (
+          <GoogleMap
+            mapContainerStyle={mapContainerStyle}
+            zoom={10}
+            center={center}
+            options={mapOptions}
+          >
+            <RedLocationMarker location={center} />
+          </GoogleMap>
+        )
       )}
     </div>
   );
