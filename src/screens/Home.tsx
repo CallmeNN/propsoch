@@ -1,11 +1,12 @@
 import BottomNavigation from "@/components/BottomNavigation";
 import Header from "@/components/Header";
 import { useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 function Home() {
+    const navigate = useNavigate();
   useEffect(() => {
-    console.log("Home");
+    navigate("/explore");
   }, []);
   return (
     <div className="theme-light">

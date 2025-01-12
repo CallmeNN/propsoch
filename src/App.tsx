@@ -13,16 +13,17 @@ import Explore from "./screens/explore/Explore";
 import Wishlist from "./screens/wishlist/Wishlist";
 import Map from "./screens/map/Map";
 import PropertyDetails from "./screens/propertyDetails/PropertyDetails";
+import { useEffect } from "react";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
     children: [
-      {
-        path: "",
-        element: <MainSection />,
-      },
+      // {
+      //   path: "",
+      //   element: <Explore />,
+      // },
       {
         path: ROUTE_EXPLORE,
         element: <Explore />,
@@ -45,9 +46,14 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "*",
+    element: <div style={{backgroundColor: "gray", padding: "1rem", textAlign: "center"}}>404</div>,
+  }
 ]);
 
 function App() {
+
   return <RouterProvider router={router} />;
 }
 
