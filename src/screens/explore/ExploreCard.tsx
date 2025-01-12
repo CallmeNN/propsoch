@@ -4,6 +4,7 @@ import { Eye, Star, Heart } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { toggleWishlist } from "@/app/features/properties/propertiesSlice";
 import { useNavigate } from "react-router-dom";
+import React from "react";
 
 function ExploreCard({
   details,
@@ -21,8 +22,10 @@ function ExploreCard({
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { id, name, availability, seen, rating, wishlisted, slides } = details;
-  const handleWishlistToggle = (id: number) => {
+  const handleWishlistToggle = (id: number, event: React.MouseEvent | React.TouchEvent) => {
+    event.stopPropagation();
     dispatch(toggleWishlist(id));
+   
   };
 
   const OPTIONS: EmblaOptionsType = {};
@@ -44,7 +47,7 @@ function ExploreCard({
           >
             Most Liked
           </span>
-          <span onClick={() => handleWishlistToggle(id)}>
+          <span onClick={(event) => handleWishlistToggle(id,event)}>
             <Heart fill={wishlisted ? "red" : "white"} strokeWidth={0} />
           </span>
         </>
