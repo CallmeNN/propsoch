@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import "./Explore.scss";
 import ExploreCard from "./ExploreCard";
 import propBuild1 from "@/assets/images/propBuild1.jpeg";
-import propBuild2 from "@/assets/images/propBuild2.jpeg";
+// import propBuild2 from "@/assets/images/propBuild2.jpeg";
 import propBuild3 from "@/assets/images/propBuild3.jpeg";
 import propBuild4 from "@/assets/images/propBuild4.jpeg";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,7 +10,7 @@ import { setProperties } from "@/app/features/properties/propertiesSlice";
 
 // Static data can be moved outside the component
 const SLIDE1 = Array(5).fill(propBuild1);
-const SLIDE2 = Array(5).fill(propBuild2);
+// const SLIDE2 = Array(5).fill(propBuild2);
 const SLIDE3 = Array(5).fill(propBuild3);
 const SLIDE4 = Array(5).fill(propBuild4);
 
@@ -27,7 +27,7 @@ const fetchMoreData = (startIndex: number, limit: number) => {
           seen: `${(Math.random() * 100000).toFixed(0)}`,
           rating: (Math.random() * 5).toFixed(2),
           wishlisted: false,
-          slides: [SLIDE1, SLIDE2, SLIDE3, SLIDE4][index % 4],
+          slides: [SLIDE1, SLIDE3, SLIDE4][index % 3],
         }));
       resolve(newDetails);
     }, 2000); // Simulate network delay
