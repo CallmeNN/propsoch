@@ -9,7 +9,7 @@ import React, {
   type UseDotButtonType = {
     selectedIndex: number
     scrollSnaps: number[]
-    onDotButtonClick: (index: number) => void
+    onDotButtonClick: (index: number,event: React.MouseEvent) => void
   }
   
   export const useDotButton = (
@@ -19,7 +19,8 @@ import React, {
     const [scrollSnaps, setScrollSnaps] = useState<number[]>([])
   
     const onDotButtonClick = useCallback(
-      (index: number) => {
+      (index: number,event: React.MouseEvent) => {
+        event.stopPropagation();
         if (!emblaApi) return
         emblaApi.scrollTo(index)
       },
