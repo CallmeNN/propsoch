@@ -1,7 +1,6 @@
 import "./App.css";
 import Home from "./screens/Home";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import MainSection from "./screens/MainSection";
 import {
   ROUTE_EXPLORE,
   ROUTE_LOGIN,
@@ -13,7 +12,6 @@ import Explore from "./screens/explore/Explore";
 import Wishlist from "./screens/wishlist/Wishlist";
 import Map from "./screens/map/Map";
 import PropertyDetails from "./screens/propertyDetails/PropertyDetails";
-import { useEffect } from "react";
 
 const router = createBrowserRouter([
   {
